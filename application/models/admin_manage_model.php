@@ -5,7 +5,7 @@ class admin_manage_model extends CI_Model {
 
 	public function select($table='')
 	{
-		$this->db->where('status', 1);
+		//$this->db->where('status', 1);
 		$result = $this->db->get($table);
 		return $result->result_array();
 	}
@@ -48,4 +48,18 @@ class admin_manage_model extends CI_Model {
 		$this->db->update($table, $data[0]);
 	}
 
+	public function order_list(){
+		$query =$this->db->get('order');
+		return $query->result_array();
+	}
+
+	public function order_del($id){
+		$this->db->where('id', $id);
+        $this->db->delete('order');
+	}
+
+	public function login($input){
+		$query = $this->db->get_where('admin',array('username'=>$input['username'],'password'=>$input['password']));
+		return $query;
+	}
 }

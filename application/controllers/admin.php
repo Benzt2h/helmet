@@ -42,14 +42,14 @@ class admin extends CI_Controller {
 				$this->db->delete($table);
 				redirect('admin/'.$table.'');
 			}else{
-				#$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
+				$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
 				$this->load->view('admin/header', $data);
 				$this->load->view('admin/'.$table.'');
 			}
 
 		}else{
 
-			#$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
+			$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
 			$this->load->view('admin/header', $data);
 			$this->load->view('admin/'.$table.'');
 
@@ -89,14 +89,14 @@ class admin extends CI_Controller {
 				$this->db->delete($table);
 				redirect('admin/'.$table.'');
 			}else{
-				#$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
+				$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
 				$this->load->view('admin/header', $data);
 				$this->load->view('admin/'.$table.'');
 			}
 
 		}else{
 
-			#$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
+			$data[''.$table.'_list'] = $this->admin_manage_model->select($table);
 			$this->load->view('admin/header', $data);
 			$this->load->view('admin/'.$table.'');
 
@@ -398,5 +398,40 @@ class admin extends CI_Controller {
 		}
 	}
 
+	public function order(){
+		$data['data'] = $this->admin_manage_model->order_list();
+		$this->load->view('admin/header');
+        $this->load->view('admin/order',$data);
+	}
 
+	public function order_del(){
+		$id=$this->uri->segment(3);
+		$this->admin_manage_model->order_del($id);
+       redirect('admin/order');
+	}
+
+	public function login(){
+		$this->load->view('admin/login');
+	}
+
+	public function login_process(){
+		$input = array(
+            'username'=>$this->input->post('username'),
+            'password'=>$this->input->post('password'),
+		);
+		$data =$this->admin_manage_model->login($input);
+		if($data->num_rows()){
+			$data_result = $data->result();
+			//set session
+			$this->session->set_userdata('username', $data_result[0]->username);
+            $this->load->view('admin/header');
+			$this->load->view('admin/index');
+		}else $this->load->view('admin/login');
+	}
+
+	public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('admin/login');
+    }
 }

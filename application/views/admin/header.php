@@ -1,3 +1,10 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+    if ($this->session->userdata('username')) {
+    } else {
+        redirect('admin/login');
+    }
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -126,7 +133,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        <a class="dropdown-item" href="<?php echo site_url('admin/logout');?>"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                         <div class="dropdown-divider"></div>
                         <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
                     </div>
@@ -160,6 +167,8 @@
 
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('admin/product') ?>" aria-expanded="false"><i class="mdi mdi-folder-upload"></i><span class="hide-menu">สินค้า</span></a></li>
                 
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('admin/order') ?>" aria-expanded="false"><i class="mdi mdi-folder-upload"></i><span class="hide-menu">ออเดอร์</span></a></li>
+
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('admin/services') ?>" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">บริการ</span></a></li>
                 
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('admin/contactus') ?>" aria-expanded="false"><i class="mdi mdi-whatsapp"></i><span class="hide-menu">ติดต่อเรา</span></a></li>
