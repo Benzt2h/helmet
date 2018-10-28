@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2018 at 02:17 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Oct 28, 2018 at 07:05 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,6 +41,25 @@ CREATE TABLE `about` (
 
 INSERT INTO `about` (`id`, `detail`, `sort_order`, `status`) VALUES
 (1, '<p style=\"text-align:center\"><span style=\"font-size:36px\"><strong>เกี่ยวกับเรา</strong></span></p>\r\n\r\n<p>ร้านหมวกกันน๊อค หลายรุ่น หลายราคา มาคอยทุกท่านอยุ่ ที่ DN HELMET SHOP ปากซอย วัดพระธาตุนารายณ์เจงเวง ติดถนน ทางไปอุดร ก่อนถึง สนง.ขนส่งจังหวัดสกลนคร เราพร้อมจัดส่งทางไปรษณีย์ สำหรับท่านที่อยู่ไกลสนใจสอบถามได้ที่ in box หรือโทร. มาที่ 063-963-5869</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p style=\"text-align:center\"><a href=\"http://localhost/helmet/assets/images/31_1.jpg\"><img alt=\"\" src=\"http://localhost/helmet/assets/images/31_1.jpg\" style=\"height:426px; width:640px\" /></a></p>\r\n', '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`username`, `password`, `name`) VALUES
+('benz', 'benz', 'benz');
 
 -- --------------------------------------------------------
 
@@ -256,6 +275,12 @@ INSERT INTO `services` (`id`, `detail`, `sort_order`, `status`) VALUES
 --
 ALTER TABLE `about`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `brand`
